@@ -1,6 +1,8 @@
 # 🌀️ DevFormatter
-A discord bot to format your discord server messages.
+A discord bot based off discord.js created to format your discord server messages.
+![Example Image](https://github.com/pedrohegem/DevFormatter/blob/main/example.png)
 ## 🔹️ Installation
+This bot is written to run on top of node.js. Please see https://nodejs.org/en/download/ </br></br>
 Use a <strong>packet manager</strong> of your preference to install all dependencies. I personally recommend `npm` or `yarn`
 ```bash
 npm/yarn install
@@ -9,6 +11,7 @@ Since <strong>dotenv</strong> is used to keep your bot token secure, create an `
 
 ``` TOKEN= youractualtokenhere```
 ## 🔹️ Usage
+This is also a <i>self-hosted</i> bot – meaning you will need to host and maintain your own instance.</br>
 Running the bot:
 ```bash
 npm/yarn start
