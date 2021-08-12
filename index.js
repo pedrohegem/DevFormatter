@@ -9,7 +9,7 @@ const client = new Client({
   ],
 });
 
-const prefix = "/";
+const prefix = ".";
 
 client.once("ready", () => {
   console.log("Logged...");
@@ -28,8 +28,8 @@ client.on("messageCreate", async (msg) => {
   
   const rawMsg = msg.content.slice(prefix.length);
   const command = rawMsg.includes(' ') 
-    ? rawMsg.substr(0, rawMsg.indexOf(" "))
-    : rawMsg
+    ? rawMsg.substr(0, rawMsg.indexOf(" ")) // format command
+    : rawMsg // help command
   
   if (command === "format") {
 
@@ -37,13 +37,12 @@ client.on("messageCreate", async (msg) => {
       let args = rawMsg.substr(rawMsg.indexOf(" ") + 1).split("-d");
       const tittle = args[0];
       const [desc, url] = args[1].trim().split("-u");
-
       if (tittle && url) {
         const embed = new MessageEmbed()
           .setColor("#000000")
           .setTitle(`🌀️ ${tittle}.`)
           .setDescription(desc ?? "")
-          .addField("Source:", url, true)
+          .addField("Source:", url === " " ? "empty url" : url, true)
           .setFooter(
             msg.author.username,
             `https://cdn.discordapp.com/avatars/${msg.author.id}/${msg.author.avatar}.png`
@@ -53,16 +52,16 @@ client.on("messageCreate", async (msg) => {
         msg.delete();
       } else {
         msg.react("😡");
-        msg.channel.send("`tittle` nor `url` **musn't be blank.**");
+        msg.channel.send("`title` nor `url` **musn't be blank.**");
       }
     } else {
       msg.react("😡");
-      msg.channel.send("**Please provide a proper format as** `/format text -d description -u url`");
+      msg.channel.send("**Please provide a proper format as** `.format title -d description -u url`");
     }
   }
 
   if(command === 'help') {
-    msg.channel.send("🔹️**Command** `/format text -d description -u url`");
+    msg.channel.send("🔹️**Command** `.format title -d description -u url`");
     msg.delete()
   }
 });
