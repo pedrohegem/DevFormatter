@@ -35,9 +35,9 @@ client.on("messageCreate", async (msg) => {
   if (command === "format") {
 
     if (rawMsg.includes("-d") && rawMsg.includes("-u")) {
-      let args = rawMsg.substr(rawMsg.indexOf(" ") + 1).split("-d");
+      let args = rawMsg.substr(rawMsg.indexOf(" ") + 1).split(" -d ");
       const tittle = args[0];
-      const [desc, url] = args[1].trim().split("-u");
+      const [desc, url] = args[1].trim().split(" -u ");
       if (tittle && url) {
         const embed = new MessageEmbed()
           .setColor("#000000")
